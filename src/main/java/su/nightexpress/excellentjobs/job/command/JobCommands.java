@@ -19,7 +19,8 @@ import su.nightexpress.nightcore.commands.context.ParsedArguments;
 @NullMarked
 public class JobCommands implements CommandProvider {
 
-    private static final String ARG_JOB = "job";
+    private static final String ARG_JOB    = "job";
+    private static final String ARG_PLAYER = "player";
 
     private final JobManager manager;
 
@@ -34,6 +35,11 @@ public class JobCommands implements CommandProvider {
                 .playerOnly()
                 .description(JobLang.COMMAND_MENU_DESC.text())
                 .permission(JobPerms.COMMAND_MENU)
+                .withArguments(
+                    Arguments.player(ARG_PLAYER)
+                        .permission(JobPerms.COMMAND_MENU_OTHERS)
+                        .optional()
+                )
                 .executes(this::handleMenu)
             )
             .branch(Commands.literal("join")
@@ -73,7 +79,17 @@ public class JobCommands implements CommandProvider {
     }
 
     private boolean handleMenu(CommandContext context, ParsedArguments arguments) {
-        Player player = context.getPlayerOrThrow();
+        Player player;
+        if (arguments.contains(ARG_PLAYER)) {
+            player = arguments.getPlayer(ARG_PLAYER);
+        }
+        else {
+            if (!context.isPlayer()) {
+                context.errorPlayerOnly();
+                return false;
+            }
+            player = context.getPlayerOrThrow();
+        }
 
         this.manager.showJobsMenu(player);
         return true;
