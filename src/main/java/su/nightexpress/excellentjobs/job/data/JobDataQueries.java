@@ -1,6 +1,5 @@
 package su.nightexpress.excellentjobs.job.data;
 
-import java.sql.Timestamp;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -39,8 +38,8 @@ public class JobDataQueries {
         .defaultValue("{}")
         .build();
 
-    public static final Column<Timestamp> GRIND_LIMIT_TIMESTAMP_COLUMN = Column.timestamp("grind_limit_timestamp")
-        .defaultValue(new Timestamp(0L).toString())
+    public static final Column<Long> GRIND_LIMIT_TIMESTAMP_COLUMN = Column.longType("grind_limit_timestamp")
+        .defaultValue("0")
         .build();
 
     public static final Column<Set<Integer>> CLAIMED_REWARDS_COLUMN = Column
@@ -71,7 +70,7 @@ public class JobDataQueries {
         Set<Integer> claimedRewards = CLAIMED_REWARDS_COLUMN.readOrThrow(resultSet);
 
         Map<GrindObjectiveProperty, Double> limitProgress = GRIND_LIMIT_PROGRESS_COLUMN.readOrThrow(resultSet);
-        long limiTimestamp = GRIND_LIMIT_TIMESTAMP_COLUMN.readOrThrow(resultSet).getTime();
+        long limiTimestamp = GRIND_LIMIT_TIMESTAMP_COLUMN.readOrThrow(resultSet);
 
         return new JobData.Builder(playerId, jobId)
             .setActive(active)
@@ -99,6 +98,6 @@ public class JobDataQueries {
         .setInt(LEVEL_COLUMN, JobData::getLevel)
         .setString(CLAIMED_REWARDS_COLUMN, data -> GSON.toJson(data.getClaimedLevelRewards()))
         .setString(GRIND_LIMIT_PROGRESS_COLUMN, data -> GSON.toJson(data.getLimitProgress()))
-        .setTimestamp(GRIND_LIMIT_TIMESTAMP_COLUMN, data -> new Timestamp(data.getLimitTimestamp()))
+        .setLong(GRIND_LIMIT_TIMESTAMP_COLUMN, JobData::getLimitTimestamp)
         .build();
 }
