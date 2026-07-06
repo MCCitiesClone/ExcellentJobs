@@ -10,14 +10,7 @@ import su.nightexpress.nightcore.locale.entry.TextLocale;
 import su.nightexpress.nightcore.util.placeholder.CommonPlaceholders;
 import su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers;
 
-public class JobLang implements LangContainer {
-
-    private JobLang() {
-    }
-
-    public static final LangEntry.Builder builder(String path) {
-        return LangEntry.builder("Job." + path);
-    }
+public final class JobLang implements LangContainer {
 
     public static final TextLocale COMMAND_JOIN_DESC = LangEntry.builder("Command.Join.Desc")
         .text("Join a job.");
@@ -58,4 +51,14 @@ public class JobLang implements LangContainer {
         TagWrappers.GRAY.wrap("You have quit your " +
             TagWrappers.GREEN.wrap(JobsPlaceholders.JOB_NAME) + " job.")
     );
+
+    public static final TextLocale PLACEHOLDER_JOB_NAMES_DELIMITER = builder("Job.Placeholder.JobName.Delimiter")
+        .text(", ");
+
+    public static LangEntry.Builder builder(String path) {
+        return LangEntry.builder("Job." + path);
+    }
+
+    private JobLang() {
+    }
 }

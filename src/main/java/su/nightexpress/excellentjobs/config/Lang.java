@@ -12,7 +12,7 @@ import su.nightexpress.nightcore.locale.entry.TextLocale;
 import su.nightexpress.nightcore.util.placeholder.CommonPlaceholders;
 import su.nightexpress.nightcore.util.text.night.wrapper.TagWrappers;
 
-public class Lang implements LangContainer {
+public final class Lang implements LangContainer {
 
     private Lang() {
     }
