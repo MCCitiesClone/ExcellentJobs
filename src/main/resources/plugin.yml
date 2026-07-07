@@ -10,5 +10,5 @@ softdepend:
   - MythicMobs
   - EvenMoreFish
   - CustomFishing
-  - InfiniteFishing
+#  - InfiniteFishing # dependency unavailable in Maven; adapter commented out
 api-version: 1.21

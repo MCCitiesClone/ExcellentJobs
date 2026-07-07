@@ -50,9 +50,9 @@ public class ZoneSettings extends AbstractConfig {
     private final ConfigProperty<Material> highlightBlockWire = this.addProperty(
         ConfigCodecs.MATERIAL,
         "Zones.Highlighting.WireBlock",
-        Material.CHAIN,
+        Material.IRON_CHAIN,
         "Block type used for a fake block display entity for zone selection's corners connections.",
-        "[Default is " + BukkitThing.getValue(Material.CHAIN) + "]"
+        "[Default is " + BukkitThing.getValue(Material.IRON_CHAIN) + "]"
     );
 
     public boolean isStrictMode() {

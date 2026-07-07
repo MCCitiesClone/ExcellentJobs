@@ -73,7 +73,7 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.8-R0.1-SNAPSHOT</version>
+            <version>1.21.11-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -143,12 +143,14 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- InfiniteFishing is not published to any Maven repository; commented out until a resolvable artifact is available.
         <dependency>
             <groupId>com.pm2.infinitefishing</groupId>
             <artifactId>InfiniteFishing</artifactId>
             <version>1.5.8</version>
             <scope>provided</scope>
         </dependency>
+        -->
     </dependencies>
 
     <build>
